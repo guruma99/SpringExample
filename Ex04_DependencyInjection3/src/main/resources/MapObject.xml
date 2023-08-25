@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 등록  : Map이면 어떻게 주입을 할까? -->
+	<!-- 1. 생성자에 map태그에 entry태그를 넣어서 주입한다. -->
+	<bean name="mapObject1" class="kr.human.di.vo.MapObject">
+		<constructor-arg>
+			<map>
+				<entry key="computer" value="1230000"/>
+				<entry key="keyboard" value="30000"/>
+				<entry key="mouse" value="5000"/>
+			</map>		
+		</constructor-arg>
+	</bean>
+	
+	<!-- 2. Setter에 map태그에 entry태그를 넣어서 주입한다. -->
+	<bean name="mapObject2" class="kr.human.di.vo.MapObject">
+		<property name="map">
+			<map>
+				<entry key="computer" value="1230000"/>
+				<entry key="keyboard" value="30000"/>
+				<entry key="mouse" value="5000"/>
+			</map>	
+		</property>
+	</bean>
+	
+	<!-- 3. 참조를 통한 주입 -->
+	<bean name="map" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="computer" value="1230000"/>
+				<entry key="keyboard" value="30000"/>
+				<entry key="mouse" value="5000"/>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean name="mapObject3" class="kr.human.di.vo.MapObject">
+		<property name="map" ref="map"/>
+	</bean>
+</beans>

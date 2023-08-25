@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 등록  : 객체는 어떻게 주입을 할까? -->
+	<!-- 1. 기본 생성자를 통한 주입 -->
+	<bean name="answer1" class="kr.human.di.vo.AnswerVO"/>
+	<bean name="user1" class="kr.human.di.vo.UserVO"/>
+	<!-- 2. 인수가 3개인 생성자를 통한 주입 -->
+	<bean name="answer2" class="kr.human.di.vo.AnswerVO">
+		<constructor-arg value="1"/>
+		<constructor-arg value="자바"/>
+		<constructor-arg value="06/14/2023"/>
+	</bean>
+	<bean name="user2" class="kr.human.di.vo.UserVO">
+		<constructor-arg value="1"/>
+		<constructor-arg value="한사람"/>
+		<constructor-arg value="kkk@kkk.com"/>
+	</bean>
+	<!-- 3. Setter를 이용한 주입 -->
+	<bean name="answer3" class="kr.human.di.vo.AnswerVO">
+		<property name="id" value="1"/>
+		<property name="answer" value="자바"/>
+		<property name="postedDate" value="06/14/2023"/>
+	</bean>
+	<bean name="user3" class="kr.human.di.vo.UserVO">
+		<property name="id" value="1"/>
+		<property name="name" value="한사람"/>
+		<property name="email" value="kkk@kkk.com"/>
+	</bean>
+
+</beans>

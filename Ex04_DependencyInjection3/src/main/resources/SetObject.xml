@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 등록  : Set이면 어떻게 주입을 할까? -->
+	<!-- 1. 생성자에 set태그에 value태그를 넣어서 배열을 전달하여 주입한다. -->
+	<bean name="setObject1" class="kr.human.di.vo.SetObject">
+		<constructor-arg>
+			<set>
+				<value>한사람</value>			
+				<value>두사람</value>			
+				<value>세사람</value>			
+			</set>		
+		</constructor-arg>
+	</bean>
+	
+	<!-- 2. Setter에 set태그에 value태그를 넣어서 배열을 전달하여 주입한다. -->
+	<bean name="setObject2" class="kr.human.di.vo.SetObject">
+		<property name="nameSet">
+			<set>
+				<value>한사람</value>			
+				<value>두사람</value>			
+			</set>		
+		</property>
+	</bean>
+</beans>

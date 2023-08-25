@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko" xmlns="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>시작페이지</title>
+</head>
+<body>
+	<h2>모두 보기</h2>
+	<hr />
+	<ul>
+		<li th:each="vo:${list}">
+			[[${vo.idx}]]. [[${vo.firstName}]]  [[${vo.lastName}]] ([[${vo.section}]]) 
+		</li>
+	</ul>
+	<hr />
+	<form action="insertOk" method="post">
+		<input type="text" name="firstName" required="required" placeholder="성" size="2"/>
+		<input type="text" name="lastName" required="required" placeholder="이름" size="6"/>
+		<input type="text" name="section" required="required" placeholder="과목" size="8"/>
+		<input type="submit" value="저장" />
+	</form>
+</body>
+</html>

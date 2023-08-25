@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 등록  : bean 태그가 new와 같다. -->
+	<bean name="emailService" class="kr.human.di.service.EmailService"/>
+	<bean name="twitterService" class="kr.human.di.service.TwitterService"/>
+	
+	<bean name="myApplication1" class="kr.human.di.app.MyApplication">
+		<property name="service" ref="emailService"/>
+	</bean>
+
+	<bean name="myApplication2" class="kr.human.di.app.MyApplication">
+		<constructor-arg ref="twitterService"/>
+	</bean>
+	
+</beans>

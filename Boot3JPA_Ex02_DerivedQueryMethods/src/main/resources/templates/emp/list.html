@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+<script src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="/webjars/axios/1.4.0/dist/axios.min.js"></script>
+<title>JPA 연습</title>
+<style type="text/css">
+.info {
+	width: 90%;
+	padding: 10px;
+	margin: auto;
+	border: 1px solid gray;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 18pt;
+	border-radius: 20px;
+}	
+table{ width: 800px;font-size: 10pt;}
+td, th { padding:5px; border: 1px solid gray;text-align: center;}
+th { background-color: silver; }
+input, select {font-size: 10pt;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		// 부서버튼 클릭
+		$("#deptBtn").click(function(){
+			let dept=$("#dept1").val();
+			alert(dept);
+			// 주소 이동
+			location.href='deptList?deptName='+ dept;
+		});
+		// 부서버튼 클릭
+		$("#salaryBtn").click(function(){
+			let salary=$("#salary1").val();
+			alert(salary);
+			location.href='salaryList?salary='+ salary;
+		});
+		
+		$("#deptSalaryBtn").click(function(){
+			let dept=$("#dept2").val();
+			let salary=$("#salary2").val();
+			alert(dept+"\n"+salary);
+			location.href='deptSalaryList?deptName='+ dept+"&salary="+salary;
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="info">
+		<img src="/images/helloworld.jpg" alt="로고" />
+		<hr />
+		<img src="/images/linux-icon.png" alt="귀여운 펭귄" width="100" height="100" />
+		<img src="/images/linux-icon2.png" alt="건방진 펭귄" width="100"	height="100" />
+		<hr />
+		<h2>사원목록</h2>
+		<hr />
+		<a href="/emp/"  class="btn btn-sm btn-outline-success">전체</a> &nbsp;
+		<select id="dept1">
+			<option value="총무">총무</option>
+			<option value="인사">인사</option>
+			<option value="기획">기획</option>
+			<option value="회계">회계</option>
+		</select>
+		<input id="deptBtn" type="button" value="부서보기" class="btn btn-sm btn-outline-success"/>
+		
+		<input type="number" id="salary1" required="required" value="35000000" />
+		<input id="salaryBtn" type="button" value="이상연봉보기" class="btn btn-sm btn-outline-success"/>
+		
+		<select id="dept2">
+			<option value="총무">총무</option>
+			<option value="인사">인사</option>
+			<option value="기획">기획</option>
+			<option value="회계">회계</option>
+		</select>
+		<input type="number" id="salary2" required="required" value="35000000" />
+		<input id="deptSalaryBtn" type="button" value="부서 이하연봉보기" class="btn btn-sm btn-outline-success"/>
+		
+		<hr />
+		<table border="1">
+			<tr>
+				<th>No</th>
+				<th>Name</th>
+				<th>Dept</th>
+				<th>Salary</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			<tr th:each="vo:${list}">
+				<td>[[${vo.id}]]</td>
+				<td>[[${vo.name}]]</td>
+				<td>[[${vo.dept}]]</td>
+				<td>[[${vo.salary}]]</td>
+				<td>
+						<form action="updateOk" method="post">
+							<input type="hidden" name="id" required="required" th:value="${vo.id}" />
+							<input type="text" name="name" required="required" th:value="${vo.name}"/>
+							<input type="number" name="salary" required="required" th:value="${vo.salary}"/>
+							<select name="dept">
+								<option value="총무" th:selected="${vo.dept} == '총무'">총무</option>
+								<option value="인사" th:selected="${vo.dept} == '인사'">인사</option>
+								<option value="기획" th:selected="${vo.dept} == '기획'">기획</option>
+								<option value="회계" th:selected="${vo.dept} == '회계'">회계</option>
+							</select>
+							<input type="submit" value="수정" class="btn btn-sm btn-outline-danger"/>
+						</form>	
+				</td>
+				<td><button th:onclick="location.href='deleteOk?id=[[${vo.id}]]'" class="btn btn-sm btn-outline-danger">삭제</button></td>
+			</tr>
+		</table>
+		<hr />
+		<form action="insertOk" method="post">
+			<input type="text" name="name" required="required" placeholder="이름" />
+			<input type="number" name="salary" required="required" placeholder="연봉"/>
+			<select name="dept">
+				<option value="총무">총무</option>
+				<option value="인사">인사</option>
+				<option value="기획">기획</option>
+				<option value="회계">회계</option>
+			</select>
+			<input type="submit" value="저장" class="btn btn-sm btn-outline-danger"/>
+		</form>
+		<hr />
+		<a href="/"  class="btn btn-sm btn-outline-success">Home</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 등록  : bean 태그가 new와 같다. -->
+	<bean name="messaging1" class="kr.human.di.vo.ActiveMQMessaging"/>
+	<bean name="messaging2" class="kr.human.di.vo.MMSMessaging"/>
+	
+	<!-- Setter를 이용한 의존성 주입(DI; Dependency Injection) -->
+	<bean name="communication1" class="kr.human.di.service.Communication">
+		<!-- Setter를 통한 주입 -->
+		<property name="messaging" ref="messaging1"/>
+	</bean>
+
+	<bean name="communication2" class="kr.human.di.service.Communication">
+		<!-- Setter를 통한 주입 -->
+		<property name="messaging">
+			<ref bean="messaging2"/> <!-- ref는 이미 만들어진 객체를 의미함 -->
+		</property>
+	</bean>
+
+	<bean name="communication3" class="kr.human.di.service.Communication">
+		<!-- Setter를 통한 주입 -->
+		<property name="messaging">
+			<bean class="kr.human.di.vo.SMSMessaging"/> <!-- 빈 직접 주입 -->
+		</property>
+	</bean>
+	
+</beans>

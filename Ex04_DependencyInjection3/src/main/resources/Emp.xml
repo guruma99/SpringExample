@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 등록  : 객체는 어떻게 주입을 할까? -->
+	<!-- 1. 기본 생성자를 통한 주입 -->
+	<bean name="emp1" class="kr.human.di.vo.EmpVO"/>
+	<!-- 2. 인수가 2개인 생성자를 통한 주입 -->
+	<bean name="emp2" class="kr.human.di.vo.EmpVO">
+		<constructor-arg>
+			<value>1001</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>한사람</value>
+		</constructor-arg>
+	</bean>
+	<!-- 인수의 순서와 자료형이 맞은면 된다. -->
+	<bean name="emp3" class="kr.human.di.vo.EmpVO">
+		<constructor-arg value="1002"/>
+		<constructor-arg value="두사람"/>
+	</bean>
+	<!-- 타입을 지정하면 순서가 상관없다. -->
+	<bean name="emp4" class="kr.human.di.vo.EmpVO">
+		<constructor-arg value="두사람" type="java.lang.String"/>
+		<constructor-arg value="1002" type="int"/>
+	</bean>
+	<!-- 동일한 타입이 여러개면 문제가 잘생한다. 이때는 index속성을 쓰면 된다. -->
+	<bean name="emp5" class="kr.human.di.vo.EmpVO">
+		<constructor-arg value="두사람" index="1"/>
+		<constructor-arg value="1002" index="0"/>
+	</bean>
+	
+	<!-- 3. Setter를 이용한 주입 -->
+	<bean name="emp6" class="kr.human.di.vo.EmpVO">
+		<property name="id">
+			<value>1003</value>
+		</property>
+		<property name="name">
+			<value>세사람</value>
+		</property>
+	</bean>
+	<bean name="emp7" class="kr.human.di.vo.EmpVO">
+		<property name="id" value="1005"/>
+		<property name="name" value="오사람"/>
+	</bean>
+	<!-- 4. 생성자와 Setter를 둘다 이용한 주입 -->
+	<bean name="emp8" class="kr.human.di.vo.EmpVO">
+		<constructor-arg value="1006" type="int"/>
+		<property name="name" value="육사람"/>
+	</bean>
+	<bean name="emp9" class="kr.human.di.vo.EmpVO">
+		<constructor-arg value="칠사람"/>
+		<property name="id" value="1008"/>
+	</bean>
+</beans>
