@@ -22,7 +22,7 @@ public class DateUtil {
 	public static int getDayOfWeek(int year,int month, int date) {
 		return getTotalDays(year, month, date)%7;
 	}
-	
+	/*
 	public static void main(String[] args) {
 		System.out.println(isLeafYear(2023) ? 2023+"년은 윤년" : 2023+"년은 평년");
 		System.out.println(isLeafYear(2024) ? 2024+"년은 윤년" : 2024+"년은 평년");
@@ -39,4 +39,5 @@ public class DateUtil {
 		                  );
 		}
 	}
+	*/
 }
