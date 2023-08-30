@@ -10,7 +10,7 @@
          border: none;
          padding: 10px;
          margin: auto;
-         width: 700px;
+         width: 1050px;
       }
 
       th {
@@ -19,14 +19,19 @@
          background-color: silver;
          text-align: center;
          font-weight: bold;
-         width: 130px;
+         width: 150px;
+         border-radius: 50px;
       }
       
       td {
          padding: 5px;
          border: 1px solid gray;
-         text-align: center;
+         text-align: right;
+         vertical-align: top;
          font-weight: bold;
+         height: 80px;
+         border-radius: 20px;
+         font-size: 15pt;
       }
 
       .title {
@@ -87,7 +92,7 @@
                   <sapn th:case="0" style="color: red;">[[${d.day}]]</sapn>
                   <!-- 요일이 6이면 토요일파란색 -->
                   <sapn th:case="6" style="color: blue;">[[${d.day}]]</sapn>
-                  <!-- 요일이 *이면 나머지 검은색새 -->
+                  <!-- 요일이 *이면 나머지 검은색 -->
                   <sapn th:case="*" style="color: black;">[[${d.day}]]</sapn>
                </th:block>
             </td>
