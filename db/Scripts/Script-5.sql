@@ -16,7 +16,7 @@ CREATE TABLE board(
 CREATE SEQUENCE comment_id_seq;
 
 -- 4. 댓글 테이블 생성
-CREATE TABLE becomment(
+CREATE TABLE bcomment(
 	id NUMBER PRIMARY KEY, -- 키필드
 	REF NUMBER NOT NULL, --원본글 번호
 	name varchar2(100) NOT NULL, --작성자
